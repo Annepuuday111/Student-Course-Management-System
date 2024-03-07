@@ -1,0 +1,113 @@
+{% load static %}
+<style>
+.navbar .logo {
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+}
+.navbar .logo img {
+    max-width: 175px;
+    height: auto;
+}
+.navbar {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+}
+.nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.nav-links p {
+    margin: 0;
+}
+
+.menu {
+    display: flex;
+}
+h5 {
+    text-align: right;
+    color: green;
+    margin: -5px;
+    padding: 20px;
+    font-size: 1.3em;
+}
+    #hero {
+  width: 100%;
+  height: 70vh;
+  background: white;
+}
+#hero .animated {
+  animation: up-down 2s ease-in-out infinite alternate-reverse both;
+}
+
+    #hero {
+    background-color: white;
+}
+.hero-img {
+    position: relative;
+}
+.hero-text {
+    text-align: right;
+    padding: 110px;
+}
+.hero-text h1 {
+    font-size: 2.9rem;
+    color: teal;
+}
+.hero-text p {
+    font-size: 1.5rem;
+    color: gray;
+}
+</style>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>SMS PROJECT</title>
+    <link type="text/css" rel="stylesheet" href="{% static 'css/adminstyle.css' %}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </head>
+  <body bgcolor="lightgrey">
+    <nav class="navbar">
+      <div class="logo">
+          <img align="left" src="{% static 'images/klu.png' %}" alt="KLU">
+      </div>
+      <ul class="nav-links">
+        <div class="menu">
+            <li><a href="{% url 'adminhome' %}">Home</a></li>
+            <li><a href="{% url 'adminchangepwd' %}">Change Password</a></li>
+	        <li><a href="{% url 'adminstudent' %}">Student</a></li>
+	        <li><a href="{% url 'adminfaculty' %}">Faculty</a></li>
+	        <li><a href="{% url 'admincourse' %}">Course</a></li>
+            <li class="services">
+                <a href="#">Course Mapping ▼</a>
+                <ul class="dropdown">
+                    <li><a style="font-size:15.7" href="{% url 'coursemapping' %}"> Faculty Mapping</a></li>
+                    <li><a style="font-size:15.7" href="{% url 'facultycoursemapping' %}"> View Mapping</a></li>
+                </ul>
+            </li>
+            <li><a href="{% url 'viewqueries' %}">Queries</a></li>
+            <li><a href="{% url 'adminlogout' %}">Logout</a>&nbsp;&nbsp;&nbsp;</li>
+        </div>
+      </ul>
+    </nav>
+    <h5 align="right" style="color:green">Welcome {{adminuname}}</h5>
+    {% block 'body' %}
+    <section id="hero" class="d-flex align-items-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
+                <img align="left" src="{% static 'images/home2.gif' %}" class="img-fluid animated" alt="" height="504px">
+            </div>
+            <div class="col-lg-6 order-2 order-lg-1 hero-text" data-aos="fade-up" data-aos-delay="400">
+                <h1>Student Course Management System</h1><br>
+                <p>Manage your Courses Efficiently with our User-Friendly System.......!</p>
+            </div>
+        </div>
+    </div>
+  </section>
+    {% endblock %}
+  </body>
+</html>

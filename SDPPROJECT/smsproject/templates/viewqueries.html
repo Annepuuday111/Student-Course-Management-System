@@ -1,0 +1,48 @@
+{% extends 'adminhome.html' %}
+{% block 'body' %}
+<style>
+    table {
+        width: 70%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        border: 2px solid #ddd;
+    }
+    th, td {
+      padding: 12px;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+    th {
+        background-color: teal;
+        color: white;
+    }
+    h3 {
+        text-align: center;
+        text-decoration: underline;
+        margin-top: -35px;
+        font-size: 1.5em;
+    }
+</style>
+<br>
+<h3><u>Queries</u></h3>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Subject</th>
+      <th>Message</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for submission in submissions %}
+    <tr>
+      <td>{{ submission.name }}</td>
+      <td>{{ submission.email }}</td>
+      <td>{{ submission.subject }}</td>
+      <td>{{ submission.message }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

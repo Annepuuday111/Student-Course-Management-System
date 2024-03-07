@@ -1,0 +1,139 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block 'body' %}
+<style>
+    .location{
+    width: 90%;
+    margin: auto;
+    padding: 70px 0;
+ }
+ .container {
+        width: 61%;
+        height: -260px;
+        margin: 25%;
+        padding: 10px 0;
+        margin-top: 4px;
+    }
+ form {
+        float: right;
+        width: 60%;
+        margin-top: -10px;
+        margin-bottom: 20px;
+        padding: 20px;
+        background-color: lightgray;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    }
+ .location iframe{
+    width: 80%;
+    height: 260px;
+ }
+.contact-us{
+    width: 80%;
+    margin: auto;
+ }
+.row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.contact-col{
+    flex-basis: 48%;
+    margin-bottom: 30px;
+ }
+
+.contact-col div{
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+ }
+ .contact-col div .fa{
+    font-size: 28px;
+    color: #f44336;
+    margin: 10px;
+    margin-right: 30px;
+ }
+ .contact-col div p{
+    padding: 0;
+ }
+ .contact-col div h5{
+    font-size: 20px;
+    margin-bottom: 5px;
+    color: #555;
+    font-weight: 400;
+ }
+ .contact-col input,.contact-col textarea{
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 17px;
+    outline: none;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+ }
+form {
+    display: flex;
+    flex-direction: column;
+}
+input,
+textarea {
+    margin-bottom: 5px;
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+button {
+        padding: 10px;
+        background-color: #e8491d;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    button:hover {
+        background-color: #333;
+    }
+    #hero .animated {
+        animation: up-down 2s ease-in-out infinite alternate-reverse both;
+    }
+    #hero {
+        background-color: white;
+    }
+    .hero-img {
+        position: relative;
+        margin-left: 10%;
+    }
+</style>
+<body>
+<h1 align="center"><font color="black" size="6.5"><u> Contact Us </u></font></h1>
+<center>
+    <section class="location">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!
+    1m12!1m3!1d3826.6563666777565!2d80.61807542509717!3d16.442269634292597!2m3
+    !1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a35f097e23832b3%3A0x4616fd944c078
+    389!2sKL%20University%20Main%20Entrance%2C%20Vaddeswaram%2C%20Andhra%20Pradesh%20522303!5e0!3m2!1sen!2
+    sin!4v1690088451359!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+    </section>
+</center>
+<div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
+    <img align="left" src="{% static 'images/contact.gif' %}" class="img-fluid animated" alt="" width="40%" height="704px">
+</div>
+        <div class="container">
+            <form action="{% url 'viewqueries' %}" method="post">
+                {% csrf_token %}
+                <label for="name">Name:</label><br>
+                <input type="text" id="name" name="name" required><br>
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email" required><br>
+                <label for="subject">Subject:</label><br>
+                <input type="text" id="subject" name="subject" required><br>
+                <label for="message">Message:</label><br>
+                <textarea id="message" name="message" rows="4" required></textarea><br>
+                <input style="background-color:teal" type="submit" value="Submit">
+            </form>
+        </div>
+</body>
+{% endblock %}

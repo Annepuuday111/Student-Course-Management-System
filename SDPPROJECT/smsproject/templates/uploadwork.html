@@ -1,0 +1,75 @@
+{% extends 'studenthome.html' %}
+{% block 'body' %}
+<style>
+    h3 {
+    text-align: center;
+    text-decoration: underline;
+    margin-top: -35px;
+    font-size: 1.5em;
+  }
+    .container {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .upload-form {
+        background-color: teal;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .upload-form h3 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    .upload-form input[type="text"],
+    .upload-form input[type="file"] {
+        width: calc(100% - 3px);
+        margin-bottom: 20px;
+        padding: 12px 20px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-size: 16px;
+    }
+
+    .upload-form input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 14px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+        width: 100%;
+    }
+
+    .upload-form input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+</style>
+<br>
+<body>
+<h3><u>Upload Work</u></h3><br>
+<div class="container">
+    <form action="{% url 'uploadwork' %}" method="post" enctype="multipart/form-data" class="upload-form">
+        {% csrf_token %}
+        <input type="text" name="sid" placeholder="Enter Student ID" value="{{ sid }}" readonly>
+        <input type="text" name="topic" placeholder="Enter Topic Name">
+        <input type="file" name="file" accept=".doc, .docx, .pdf, .jpg, .png, .txt">
+        <input type="submit" value="Upload">
+    </form>
+</div>
+<br>
+<div align="center" style="color:red">
+    <font size="5">
+        {% if message %}
+            <p>{{ message }}</p>
+        {% endif %}
+    </font>
+</div>
+{% endblock %}
