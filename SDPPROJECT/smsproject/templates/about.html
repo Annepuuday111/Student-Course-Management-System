@@ -55,5 +55,135 @@
       </div>
     </div>
   </section>
+
+  <section class="about-project">
+    <body>
+    <style>
+    body {
+      background-color: white;
+      margin: 0;
+      padding: 0;
+    }
+    .timeline-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .timeline {
+      position: relative;
+      width: 80%;
+    }
+    .timeline::after {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 5px;
+      height: 100%;
+      background-color: lightgray;
+    }
+    .timeline-event {
+      position: relative;
+      display: flex;
+      align-items: center;
+      margin-bottom: 80px;
+    }
+    .timeline-event h3,
+    .timeline-event p {
+      margin: 0;
+      padding: 10px 20px;
+      background-color: white;
+      border-radius: 6px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    }
+    .timeline-event h3 {
+      font-size: 1.2em;
+      margin-bottom: 5px;
+    }
+      .timeline-event img {
+        width: 10%;
+        height: 10%;
+        border-radius: 5%;
+    }
+  </style>
+  <div class="timeline-container">
+    <div class="timeline">
+      <div class="timeline-event">
+        <img src="{% static 'images/admin.png' %}" alt="Admin Image">&nbsp;&nbsp;&nbsp;
+        <h3 style="color:teal">Admin</h3>-&nbsp;&nbsp;
+        <p>The Admin module of the Student Course Management System allows administrators to manage various aspects of the system, including user accounts, courses, enrollments, and system settings. Administrators have the highest level of access and can perform tasks such as adding new users, assigning roles, and generating reports.</p>
+      </div>
+      <div class="timeline-event">
+        <img src="{% static 'images/faculty.png' %}" alt="Admin Image">&nbsp;&nbsp;&nbsp;
+        <h3 style="color:teal">Faculty</h3>-&nbsp;&nbsp;
+        <p>The Faculty module enables instructors to manage their courses, upload course materials, communicate with students, and evaluate student performance. Faculty members can view their course rosters, post announcements, grade assignments, and provide feedback to students.</p>
+      </div>
+      <div class="timeline-event">
+        <img src="{% static 'images/student.png' %}" alt="Admin Image">&nbsp;&nbsp;&nbsp;
+        <h3 style="color:teal">Student</h3>-&nbsp;&nbsp;
+        <p>The Student module provides students with access to course information, assignments, grades, and communication tools. Students can view their course schedules, submit assignments, participate in discussions, and track their academic progress. Additionally, students can access resources such as lecture notes, readings, and multimedia content.</p>
+      </div>
+    </div>
+  </div>
+  </body>
+</section>
+
+  <section class="team">
+  <style>
+    body {
+      background-color: white;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    .team-title {
+      font-size: 1.4em;
+      margin-top: 50px;
+    }
+    .team-description {
+      font-size: 1.2em;
+      margin-top: 20px;
+      margin-bottom: 50px;
+    }
+    .team-member {
+      display: inline-block;
+      margin: 20px;
+      text-align: center;
+    }
+    .team-member img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+    }
+    .team-member-name {
+      font-size: 1.2em;
+      margin-top: 10px;
+    }
+    .team-member-title {
+      font-size: 0.8em;
+      color: gray;
+    }
+  </style>
+<body>
+<h1 align="center" style="color: black"><u>Our Team</u></h1><br>
+  <div class="team-members">
+    <div class="team-member">
+      <img src="{% static 'images/UserImage.jpg' %}" alt="Kay Garland">
+      <p class="team-member-name">Suravarapu Deepthi</p>
+      <p class="team-member-title">Team Lead</p>
+    </div>
+    <div class="team-member">
+      <img src="{% static 'images/UserImage.jpg' %}" alt="Larry Parker">
+      <p class="team-member-name">Annepu Uday Kumar</p>
+      <p class="team-member-title"> Designer</p>
+    </div>
+    <div class="team-member">
+      <img src="{% static 'images/UserImage.jpg' %}" alt="Diana Pertersen">
+      <p class="team-member-name">V.P.D Sai Vinay</p>
+      <p class="team-member-title"> Designer</p>
+    </div><br><br>
+  </div>
+</body>
+  </section>
   {% endblock %}
 </html>
