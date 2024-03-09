@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
 from adminapp.models import Student, Course
 from facultyapp.models import CourseContent, UploadWork
+from django.conf import settings
+from django.core.mail import send_mail
 
 def studenthome(request):
     sid = request.session["sid"]
@@ -94,6 +96,14 @@ def uploadwork(request):
         if sid and topic and uploaded_file:
             upload = UploadWork.objects.create(student_id=sid, topic_name=topic, uploded_file=uploaded_file.name)
             message = "Work uploaded successfully..!"
+
+            # subject = 'Work Uploaded Successfully'
+            # message = ('Dear Student, your Work has been Uploaded Successfully.'
+            #            )
+            # from_email = 'annepuuday111@gmail.com'
+            # recipient_list = [Student.email]
+            # send_mail(subject, message, from_email, recipient_list)
+
         else:
             message = "Please fill in all the fields."
 

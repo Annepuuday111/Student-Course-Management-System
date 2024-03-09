@@ -22,6 +22,7 @@ urlpatterns = [
 
     path("adminstudent",views.adminstudent,name="adminstudent"),
     path("viewstudents",views.viewstudents,name="viewstudents"),
+    path("viewstudentslist",views.viewstudentslist,name="viewstudentslist"),
     path("addstudent",views.addstudent,name="addstudent"),
     path("updatestudent",views.updatestudent,name="updatestudent"),
     path("deletestudent",views.deletestudent,name="deletestudent"),

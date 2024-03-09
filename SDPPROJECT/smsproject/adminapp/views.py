@@ -31,6 +31,12 @@ def viewstudents(request):
     auname = request.session["auname"]
     return render(request,"viewstudents.html",{"studentdata":students,"count":count,"adminuname": auname})
 
+def viewstudentslist(request):
+    students=Student.objects.all()
+    count = Student.objects.count()
+    fid = request.session["fid"]
+    return render(request,"viewstudentslist.html",{"studentdata":students,"count":count,"fid": fid})
+
 def viewcourses(request):
     courses = Course.objects.all()
     count = Course.objects.count()

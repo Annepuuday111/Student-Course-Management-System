@@ -41,12 +41,19 @@ h5 {
       <ul class="nav-links">
         <div class="menu">
           <p style="bgcolor: lightgrey">
-            <a href="{% url 'facultyhome' %}">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="{% url 'facultychangepwd' %}">Change Password</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="{% url 'facultycourses' %}">My Courses</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="{% url 'facultyaddcontent' %}">Add Content</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="{% url 'facultyviewcontent' %}">ViewContent</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="{% url 'facultylogin' %}">Logout</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <li><a href="{% url 'facultyhome' %}">Home</a></li>
+            <li><a href="{% url 'facultychangepwd' %}">Change Password</a></li>
+            <li><a href="{% url 'facultycourses' %}">My Courses</a></li>
+            <li><a href="{% url 'facultyaddcontent' %}">Add Content</a></li>
+<!--            <a href="{% url 'facultyviewcontent' %}">ViewContent</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+              <li class="services">
+                <a href="#">View Details ▼</a>
+                <ul class="dropdown">
+                    <li><a style="font-size:17" href="{% url 'facultyviewcontent' %}"> ViewContent</a></li>
+                    <li><a style="font-size:17" href="{% url 'viewstudentslist' %}"> View Students</a></li>
+                </ul>
+            </li>
+            <li><a href="{% url 'facultylogin' %}">Logout</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </p>
         </div>
       </ul>

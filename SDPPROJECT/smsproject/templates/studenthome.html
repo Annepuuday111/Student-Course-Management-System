@@ -12,7 +12,7 @@
 }
 
 .navbar .logo img {
-    max-width: 175px;
+    max-width: 145px;
     height: auto;
     margin-right: 10px;
 }
@@ -60,10 +60,10 @@ h5 {
     <center>
       <div class="card">
         {% if student.gender == 'MALE' %}
-          <img src="{% static 'images/malefacultyprofile.webp' %}" alt="Male" style="width:100%">
+          <img src="{% static 'images/male.jpg' %}" alt="Male" style="width:100%; height:auto; max-height:350px;">
         {% endif %}
         {% if student.gender == 'FEMALE' %}
-          <img src="{% static 'images/femalestudentprofile.jpg' %}" alt="Female" style="width:100%">
+          <img src="{% static 'images/female.jpg' %}" alt="Female" style="width:100%; height:auto; max-height:350px;">
         {% endif %}
         <div class="container">
           <br>
