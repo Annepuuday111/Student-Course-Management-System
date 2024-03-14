@@ -15,7 +15,7 @@
   letter-spacing: 1px;
 }
     table {
-      width: 60%;
+      width: 90%;
       margin: 20px auto;
       border-collapse: collapse;
     }
@@ -34,7 +34,7 @@
       width: 15%;
       padding: 10px;
       margin-bottom: 15px;
-      margin-left: 65%;
+      margin-left: 80%;
       display: inline-block;
       border: 1px solid #ccc;
       border-radius: 4px;
@@ -46,16 +46,16 @@
       border-color: #66afe9;
       box-shadow: 0 0 5px rgba(102, 175, 233, 1);
     }
-    .viewbutton {
-  display: inline-block;
-  padding: 8px 12px;
-  background-color: green;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 4px;
-  transition: background-color 0.3s;
-}
-    .viewquiz-button {
+    .addbutton {
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: #dc3545;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+  }
+    .attempt-button {
   display: inline-block;
   padding: 8px 12px;
   background-color: orange;
@@ -65,29 +65,26 @@
   transition: background-color 0.3s;
 }
   </style>
-<h3 align="center"><u>View Courses</u></h3>
+<h3 align="center"><u>Quiz's</u></h3>
 <br>
   <input class="form-control" id="myInput" type="text" placeholder="Course Title"><br>
-
   <table align="center" border="2" class="table table-striped">
     <thead>
       <tr bgcolor="lightblue" style="color: white">
-        <th>Course code</th>
-        <th>Course title</th>
-        <th>Content</th>
-        <th>Quiz</th>
+<!--        <th>Uploaded By</th>-->
+        <th>Course Code</th>
+        <th>Quiz Title</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody id="myTable">
-      {% for course in courses %}
+      {% for content in CourseQuiz %}
         <tr>
-          <td>{{course.coursecode}}</td>
-          <td>{{course.coursetitle}}</td>
+<!--          <td>{{content.faculty.facultyid}}-{{content.faculty.fullname}}</td>-->
+          <td>{{content.course_code}}</td>
+          <td>{{content.quiz_title}}</td>
           <td>
-            <a href="studentcoursecontent/{{course.coursecode}}" class="viewbutton">View</a>
-          </td>
-          <td>
-            <a href="studentquiz/{{course.coursecode}}" class="viewquiz-button">View Quiz's</a>
+            <a href="{% url 'attemptquiz' quiz_id=content.id %}" class="attempt-button">Attempt Quiz's</a>
           </td>
         </tr>
       {% endfor %}

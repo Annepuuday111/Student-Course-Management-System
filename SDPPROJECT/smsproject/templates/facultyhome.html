@@ -44,12 +44,20 @@ h5 {
             <li><a href="{% url 'facultyhome' %}">Home</a></li>
             <li><a href="{% url 'facultychangepwd' %}">Change Password</a></li>
             <li><a href="{% url 'facultycourses' %}">My Courses</a></li>
-            <li><a href="{% url 'facultyaddcontent' %}">Add Content</a></li>
+<!--            <li><a href="{% url 'facultyaddcontent' %}">Add Content</a></li>-->
+            <li class="services">
+                <a href="#">Assessments ▼</a>
+                <ul class="dropdown">
+                    <li><a style="font-size:17" href="{% url 'facultyaddcontent' %}"> Add Content</a></li>
+                    <li><a style="font-size:17" href="{% url 'facultyaddquiz' %}"> Add Quiz</a></li>
+                </ul>
+            </li>
 <!--            <a href="{% url 'facultyviewcontent' %}">ViewContent</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
               <li class="services">
                 <a href="#">View Details ▼</a>
                 <ul class="dropdown">
-                    <li><a style="font-size:17" href="{% url 'facultyviewcontent' %}"> ViewContent</a></li>
+                    <li><a style="font-size:17" href="{% url 'facultyviewcontent' %}"> View Content</a></li>
+                    <li><a style="font-size:17" href="{% url 'facultyviewquiz' %}"> View Quiz</a></li>
                     <li><a style="font-size:17" href="{% url 'viewstudentslist' %}"> View Students</a></li>
                 </ul>
             </li>

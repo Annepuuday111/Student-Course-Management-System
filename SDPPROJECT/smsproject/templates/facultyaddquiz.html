@@ -1,0 +1,65 @@
+{% extends 'facultyhome.html' %}
+{% block 'body' %}
+<style>
+    form {
+        width: 30%;
+        margin: 0 auto;
+        background-color: teal;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+        color: white;
+        font-weight: bold;
+        font-size: 1.3em;
+    }
+
+    input[type="text"],
+    select {
+        width: calc(100% - 10px);
+        padding: 8px;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+    }
+
+    button {
+        width: 100%;
+        padding: 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+
+    h3 {
+        text-align: center;
+        text-decoration: underline;
+        margin-top: -35px;
+        font-size: 1.5em;
+    }
+</style>
+<h3><u>Add Quiz</u></h3><br>
+<h2 align="center" style="color: red">{{msg}}</h2><br>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table width="100%">
+        {% for field in form %}
+            <tr>
+                <td><label>{{ field.label }}</label></td>
+                <td>{{ field }}</td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <td colspan="2"><button type="submit">Upload</button></td>
+        </tr>
+    </table>
+</form>
+{% endblock %}

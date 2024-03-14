@@ -1,4 +1,4 @@
-{% extends 'studenthome.html' %}
+{% extends 'facultyhome.html' %}
 {% block 'body' %}
   <style>
     h3 {
@@ -9,13 +9,25 @@
   }
   h4 {
   margin-bottom: 20px;
+  margin-left: 67%;
   font-size: 1em;
   color: #333;
   font-weight: bold;
   letter-spacing: 1px;
 }
+    input {
+      width: 17%;
+      padding: 10px;
+      margin-bottom: 15px;
+      margin-left: 78%;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
     table {
-      width: 60%;
+      width: 90%;
       margin: 20px auto;
       border-collapse: collapse;
     }
@@ -30,64 +42,61 @@
       background-color: teal;
     }
 
-    input {
-      width: 15%;
-      padding: 10px;
-      margin-bottom: 15px;
-      margin-left: 65%;
-      display: inline-block;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box;
-    }
-
     input:focus {
       outline: none;
       border-color: #66afe9;
       box-shadow: 0 0 5px rgba(102, 175, 233, 1);
     }
+    .addbutton {
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: #dc3545;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+  }
     .viewbutton {
   display: inline-block;
   padding: 8px 12px;
-  background-color: green;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 4px;
-  transition: background-color 0.3s;
-}
-    .viewquiz-button {
-  display: inline-block;
-  padding: 8px 12px;
-  background-color: orange;
+  background-color: #007bff; /* Blue color */
   color: #fff;
   text-decoration: none;
   border-radius: 4px;
   transition: background-color 0.3s;
 }
   </style>
-<h3 align="center"><u>View Courses</u></h3>
+<h3 align="center"><u>View Quiz's</u></h3>
 <br>
   <input class="form-control" id="myInput" type="text" placeholder="Course Title"><br>
 
   <table align="center" border="2" class="table table-striped">
     <thead>
       <tr bgcolor="lightblue" style="color: white">
-        <th>Course code</th>
-        <th>Course title</th>
-        <th>Content</th>
-        <th>Quiz</th>
+        <th>Course Code</th>
+        <th>Quiz Title</th>
+        <th>Question</th>
+        <th>Option1</th>
+        <th>Option2</th>
+        <th>Option3</th>
+        <th>Option4</th>
+        <th>Answer</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody id="myTable">
-      {% for course in courses %}
+      {% for Quiz in CourseQuiz %}
         <tr>
-          <td>{{course.coursecode}}</td>
-          <td>{{course.coursetitle}}</td>
+          <td>{{Quiz.course_code}}</td>
+          <td>{{Quiz.quiz_title}}</td>
+          <td>{{Quiz.question}}</td>
+          <td>{{Quiz.option1}}</td>
+          <td>{{Quiz.option2}}</td>
+          <td>{{Quiz.option3}}</td>
+          <td>{{Quiz.option4}}</td>
+          <td>{{Quiz.answer}}</td>
           <td>
-            <a href="studentcoursecontent/{{course.coursecode}}" class="viewbutton">View</a>
-          </td>
-          <td>
-            <a href="studentquiz/{{course.coursecode}}" class="viewquiz-button">View Quiz's</a>
+            <a href="/quizupdation/{{content.id}}" class="addbutton">Update</a>
           </td>
         </tr>
       {% endfor %}

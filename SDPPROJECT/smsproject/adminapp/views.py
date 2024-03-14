@@ -134,7 +134,7 @@ def addfaculty(request):
            # return HttpResponse("Faculty Added Successfully")
         else:
             message = "Failed to Add Faculty"
-            return render(request, "addstudent.html", {"msg": message, "form": form, "adminuname": auname})
+            return render(request, "addfaculty.html", {"msg": message, "form": form, "adminuname": auname})
 
     return render(request,"addfaculty.html",{"form":form, "adminuname": auname})
 

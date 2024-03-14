@@ -24,3 +24,18 @@ class UploadWork(models.Model):
 
     class Meta:
         db_table = "uplodedwork_table"
+
+class CourseQuiz(models.Model):
+    id = models.AutoField(primary_key=True)
+    course_code = models.CharField(max_length=100,blank=False)
+    quiz_title = models.CharField(max_length=100,blank=False)
+    question = models.CharField(max_length=255,blank=False)
+    option1 = models.CharField(max_length=100,blank=False)
+    option2 = models.CharField(max_length=100,blank=False)
+    option3 = models.CharField(max_length=100,blank=False)
+    option4 = models.CharField(max_length=100,blank=False)
+    answer_choices = (('option1', 'Option 1'),('option2', 'Option 2'),('option3', 'Option 3'),('option4', 'Option 4'))
+    answer = models.CharField(max_length=100,blank=False,choices=answer_choices)
+
+    class Meta:
+        db_table = "coursequiz_table"

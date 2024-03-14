@@ -1,7 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Q
+from django.http import HttpResponse
 from adminapp.models import Student, Course
-from facultyapp.models import CourseContent, UploadWork
+from facultyapp.models import CourseContent, UploadWork, CourseQuiz
 from django.conf import settings
 from django.core.mail import send_mail
 
@@ -64,6 +65,12 @@ def studentcoursecontent(request,ccode):
     content = CourseContent.objects.filter(Q(course_code=ccode))
     return render(request,"studentcoursecontent.html",{"sid":sid,"coursecontent":content})
 
+def studentquiz(request,ccode):
+    sid = request.session["sid"]
+    print(sid)
+    content = CourseQuiz.objects.filter(Q(course_code=ccode))
+    return render(request,"studentquiz.html",{"sid":sid,"CourseQuiz":content})
+
 def displaystudentcourses(request):
     sid = request.session["sid"]
     ay = request.POST["ay"]
@@ -88,6 +95,7 @@ def displaycourselist(request):
 
 
 def uploadwork(request):
+    sid = request.session["sid"]
     if request.method == 'POST':
         sid = request.POST.get('sid')
         topic = request.POST.get('topic')
@@ -111,3 +119,36 @@ def uploadwork(request):
     else:
         sid = request.session.get("sid")
         return render(request, 'uploadwork.html', {"sid": sid})
+
+def attemptquiz(request, quiz_id):
+    sid = request.session["sid"]
+    quiz = CourseQuiz.objects.get(id=quiz_id)
+    questions = CourseQuiz.objects.filter(quiz_title=quiz.quiz_title)
+    return render(request, 'attemptquiz.html', {'questions': questions,"sid":sid})
+
+def submitquiz(request):
+    if request.method == 'POST':
+        if 'Submit' in request.POST:
+            submitted_answers = {}
+            for key, value in request.POST.items():
+                if key.startswith('answer'):
+                    question_number = key.replace('answer', '')
+                    submitted_answers[question_number] = value
+
+            correct_answers = {}
+            quiz_questions = CourseQuiz.objects.all()
+            for question in quiz_questions:
+                correct_answers[str(question.id)] = question.answer
+
+            score = 0
+            for question_number, submitted_answer in submitted_answers.items():
+                correct_answer = correct_answers.get(question_number, '')
+                if submitted_answer == correct_answer:
+                    score += 1
+
+            total_questions = len(quiz_questions)
+            result_percentage = (score / total_questions) * 100
+            result_message = f"You scored {score} out of {total_questions} ({result_percentage:.2f}%)"
+
+            return render(request, 'quizresult.html', {'result': result_message})
+    return HttpResponse("Invalid request")

@@ -50,6 +50,7 @@ class Student(models.Model):
     password = models.CharField(max_length=100, blank=False,default="klu123")
     email = models.CharField(max_length=100, blank=False,unique=True)
     contact = models.CharField(max_length=20, blank=False,unique=True)
+
     class Meta:
         db_table="student_table"
     def __str__(self):
