@@ -1,17 +1,36 @@
 {% extends 'studenthome.html' %}
 {% block 'body' %}
 <style>
-    .container {
-        width: 50%;
-        margin: 0 auto;
-        text-align: center;
-    }
-</style>
+.container {
+    margin: 0 auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 600px;
+    background-color: teal;
+    color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
 
+h3 {
+    text-align: center;
+    text-decoration: underline;
+    margin-top: -35px;
+    font-size: 1.5em;
+}
+
+h2 {
+    text-align: center;
+}
+</style>
+<h3><u>Quiz Result</u></h3>
+<br>
 <div class="container">
-    <h3><u>Quiz Result</u></h3>
+
+    <h4 style="color:orange" align="center"><font size="6">Thank You For Taking The Quiz...!</font></h4>
     <br>
-    <h2 align="center">{{ result }}</h2>
+    <h2 align="center">Your Score: {{ percentage }}%</h2><br>
+    <h2 align="center">Grade: {{ grade }}</h2>
     <br>
 </div>
 {% endblock %}

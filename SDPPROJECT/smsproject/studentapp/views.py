@@ -127,28 +127,33 @@ def attemptquiz(request, quiz_id):
     return render(request, 'attemptquiz.html', {'questions': questions,"sid":sid})
 
 def submitquiz(request):
-    if request.method == 'POST':
-        if 'Submit' in request.POST:
-            submitted_answers = {}
-            for key, value in request.POST.items():
-                if key.startswith('answer'):
-                    question_number = key.replace('answer', '')
-                    submitted_answers[question_number] = value
+    sid = request.session["sid"]
+    if request.method == "POST":
+        score = 0
+        total_questions = 0
 
-            correct_answers = {}
-            quiz_questions = CourseQuiz.objects.all()
-            for question in quiz_questions:
-                correct_answers[str(question.id)] = question.answer
-
-            score = 0
-            for question_number, submitted_answer in submitted_answers.items():
-                correct_answer = correct_answers.get(question_number, '')
-                if submitted_answer == correct_answer:
+        for key, value in request.POST.items():
+            if key.startswith('answer') and value:
+                total_questions += 1
+                question_number = int(key.replace('answer', ''))
+                question = CourseQuiz.objects.get(pk=request.POST[f'question{question_number}'])
+                if value == question.answer:
                     score += 1
 
-            total_questions = len(quiz_questions)
-            result_percentage = (score / total_questions) * 100
-            result_message = f"You scored {score} out of {total_questions} ({result_percentage:.2f}%)"
+        percentage = (score / total_questions) * 100 if total_questions != 0 else 0
 
-            return render(request, 'quizresult.html', {'result': result_message})
-    return HttpResponse("Invalid request")
+        if percentage >= 70:
+            grade = 'A'
+        elif percentage >= 60:
+            grade = 'B'
+        elif percentage >= 50:
+            grade = 'C'
+        elif percentage >= 40:
+            grade = 'D'
+        else:
+            grade = 'F'
+        return render(request, 'quizresult.html', {'percentage': percentage, 'grade': grade,"sid":sid})
+
+    else:
+        error_message = "Failed to Save The Quiz"
+        return render(request, 'error.html', {'error_message': error_message,"sid":sid})
