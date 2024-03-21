@@ -17,4 +17,5 @@ urlpatterns = [
     path("updatecontent",views.updatecontent,name="updatecontent"),
     path("updatequiz",views.updatequiz,name="updatequiz"),
     path("viewwork/", views.viewwork, name="viewwork"),
+    path("facultyviewresult/", views.facultyviewresult, name="facultyviewresult"),
     ]

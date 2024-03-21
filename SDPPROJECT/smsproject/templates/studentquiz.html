@@ -84,7 +84,7 @@
           <td>{{content.course_code}}</td>
           <td>{{content.quiz_title}}</td>
           <td>
-            <a href="{% url 'attemptquiz' quiz_id=content.id %}" class="attempt-button">Attempt Quiz's</a>
+            <a href="{% url 'attemptquiz' quiz_title=content.quiz_title %}" class="attempt-button">Attempt Quiz's</a>
           </td>
         </tr>
       {% endfor %}

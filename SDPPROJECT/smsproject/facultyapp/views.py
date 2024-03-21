@@ -155,6 +155,9 @@ def viewwork(request):
     context = {'course_contents': course_contents, 'fid': fid}
     return render(request, 'viewwork.html', context)
 
-
-
+def facultyviewresult(request):
+    fid = request.session.get("fid")
+    course_contents = UploadWork.objects.all()
+    context = {'course_contents': course_contents, 'fid': fid}
+    return render(request, 'facultyviewresult.html', context)
 

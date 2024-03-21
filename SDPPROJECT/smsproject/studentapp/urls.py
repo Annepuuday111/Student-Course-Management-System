@@ -14,7 +14,7 @@ urlpatterns = [
     path("studentcoursecontent/<str:ccode>",views.studentcoursecontent,name="scoursecontent"),
     path("studentquiz/<str:ccode>",views.studentquiz,name="studentquiz"),
     path('studentcoursecontent/uploadwork/', views.uploadwork, name='uploadwork'),
-    path('attemptquiz/<int:quiz_id>/', views.attemptquiz, name='attemptquiz'),
+    path('attemptquiz/<str:quiz_title>/', views.attemptquiz, name='attemptquiz'),
     path('submitquiz/', views.submitquiz, name='submitquiz'),
 
     ]

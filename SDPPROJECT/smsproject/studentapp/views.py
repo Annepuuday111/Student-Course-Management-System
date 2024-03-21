@@ -3,6 +3,7 @@ from django.db.models import Q
 from django.http import HttpResponse
 from adminapp.models import Student, Course
 from facultyapp.models import CourseContent, UploadWork, CourseQuiz
+from .models import QuizResult
 from django.conf import settings
 from django.core.mail import send_mail
 
@@ -53,23 +54,23 @@ def studentupdatepwd(request):
         print("Old Pwd is Invalid")
         msg = "Old Password is Incorrect"
 
-    return render(request, "studentchangepwd.html", {"sid":sid,"message":msg})
+    return render(request, "studentchangepwd.html", {"sid": sid, "message": msg})
 
 def studentcourses(request):
     sid = request.session["sid"]
-    return render(request,"studentcourses.html",{"sid":sid})
+    return render(request,"studentcourses.html", {"sid": sid})
 
 def studentcoursecontent(request,ccode):
     sid = request.session["sid"]
     print(sid)
     content = CourseContent.objects.filter(Q(course_code=ccode))
-    return render(request,"studentcoursecontent.html",{"sid":sid,"coursecontent":content})
+    return render(request,"studentcoursecontent.html", {"sid": sid, "coursecontent": content})
 
 def studentquiz(request,ccode):
     sid = request.session["sid"]
     print(sid)
-    content = CourseQuiz.objects.filter(Q(course_code=ccode))
-    return render(request,"studentquiz.html",{"sid":sid,"CourseQuiz":content})
+    content = CourseQuiz.objects.filter(Q(course_code=ccode)).distinct('quiz_title')
+    return render(request,"studentquiz.html", {"sid": sid, "CourseQuiz": content})
 
 def displaystudentcourses(request):
     sid = request.session["sid"]
@@ -120,14 +121,15 @@ def uploadwork(request):
         sid = request.session.get("sid")
         return render(request, 'uploadwork.html', {"sid": sid})
 
-def attemptquiz(request, quiz_id):
+def attemptquiz(request, quiz_title):
     sid = request.session["sid"]
-    quiz = CourseQuiz.objects.get(id=quiz_id)
-    questions = CourseQuiz.objects.filter(quiz_title=quiz.quiz_title)
-    return render(request, 'attemptquiz.html', {'questions': questions,"sid":sid})
+    quiz = CourseQuiz.objects.filter(quiz_title=quiz_title)
+    questions = CourseQuiz.objects.filter(quiz_title=quiz_title)
+    return render(request, 'attemptquiz.html', {'questions': questions, 'sid': sid, 'quiz': quiz})
 
 def submitquiz(request):
     sid = request.session["sid"]
+
     if request.method == "POST":
         score = 0
         total_questions = 0
@@ -152,8 +154,11 @@ def submitquiz(request):
             grade = 'D'
         else:
             grade = 'F'
-        return render(request, 'quizresult.html', {'percentage': percentage, 'grade': grade,"sid":sid})
+        print(grade,sid,percentage)
+        quizresult = QuizResult(sid=sid,quiz_title="Django", quiz_score=score)
+        QuizResult.save(quizresult)
+        return render(request, 'quizresult.html', {'percentage': percentage, 'grade': grade, "sid": sid})
 
     else:
         error_message = "Failed to Save The Quiz"
-        return render(request, 'error.html', {'error_message': error_message,"sid":sid})
+        return render(request, 'error.html', {'error_message': error_message, "sid": sid})
