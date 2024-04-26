@@ -1,17 +1,91 @@
-{% extends 'adminhome.html' %} {% block 'body' %}
+{% extends 'adminhome.html' %}
+{% load static %}
+{% block 'body' %}
+<style>
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 130px;
+  }
 
-<center>
-  <button class="button">
-    <a href="{% url 'addcourses' %}"><font size="3" color="white">Add Course</font></a>
-  </button>
-  <button class="button">
-    <a href="{% url 'viewcourses' %}"><font size="3" color="white">View All Courses</font></a>
-  </button>
-  <button class="button">
-    <a href="{% url 'updatecourse' %}"><font size="3" color="white">Update Courses</font></a>
-  </button>
-  <button class="button">
-    <a href="{% url 'deletecourse' %}"><font size="3" color="white">Delete Courses</font></a>
-  </button>
-</center>
+  .card {
+    flex: 0 0 calc(25% - 20px);
+    width: 200px;
+    margin: 0 0 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  .card img {
+    max-width: 100%;
+    max-height: 70%;
+  }
+
+  .card input[type="text"] {
+    width: calc(100% - 20px);
+    height: 40px;
+    margin-top: 10px;
+    margin-bottom: 0;
+    background-color: teal;
+    color: black;
+    text-align: center;
+    border: none;
+  }
+
+  .card .rectangle-box {
+    width: calc(100% - -20px);
+    height: 40px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: teal;
+    color: white;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+  .card a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+</style>
+
+<div class="card-container">
+  <div class="card">
+    <a href="{% url 'addcourses' %}">
+      <img src="{% static 'images/addcourse.png' %}" alt="Image 1 description">
+      <div class="rectangle-box"> Add Course</div>
+    </a>
+  </div>
+
+  <div class="card">
+    <a href="{% url 'viewcourses' %}">
+      <img src="{% static 'images/viewcourse.gif' %}" alt="Image 2 description" style="height: 270px;">
+      <div class="rectangle-box">View All Course</div>
+    </a>
+  </div>
+
+  <div class="card">
+    <a href="{% url 'updatecourse' %}">
+      <img src="{% static 'images/updatecourse.gif' %}" alt="Image 3 description">
+      <div class="rectangle-box">Update Course</div>
+    </a>
+  </div>
+
+  <div class="card">
+    <a href="{% url 'deletecourse' %}">
+      <img src="{% static 'images/deletecourse.png' %}" alt="Image 4 description" style="height: 270px;">
+      <div class="rectangle-box">Delete Course</div>
+    </a>
+  </div>
+</div>
+
 {% endblock %}

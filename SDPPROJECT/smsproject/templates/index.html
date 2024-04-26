@@ -88,5 +88,22 @@
     </div>
 </section>
 {% endblock %}
+<script>
+    document.getElementById("loginDropdown").addEventListener("click", function(event) {
+        event.stopPropagation();
+        var dropdown = this.querySelector(".dropdown");
+        dropdown.classList.toggle("show");
+    });
+
+    window.addEventListener("click", function(event) {
+        var dropdowns = document.getElementsByClassName("dropdown");
+        for (var i = 0; i < dropdowns.length; i++) {
+            var dropdown = dropdowns[i];
+            if (dropdown.classList.contains("show") && !dropdown.parentNode.contains(event.target)) {
+                dropdown.classList.remove("show");
+            }
+        }
+    });
+</script>
 </body>
 </html>

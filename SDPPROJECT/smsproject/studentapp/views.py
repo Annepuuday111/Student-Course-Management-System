@@ -116,7 +116,7 @@ def uploadwork(request):
         else:
             message = "Please fill in all the fields."
 
-        return render(request, 'uploadwork.html', {"sid": sid, "message": message, "upload":upload})
+        return render(request, 'uploadwork.html', {"sid": sid, "message": message, "upload": upload})
     else:
         sid = request.session.get("sid")
         return render(request, 'uploadwork.html', {"sid": sid})
@@ -129,6 +129,9 @@ def attemptquiz(request, quiz_title):
 
 def submitquiz(request):
     sid = request.session["sid"]
+
+    if QuizResult.objects.filter(sid=sid).exists():
+        return HttpResponse("Quiz is already taken.")
 
     if request.method == "POST":
         score = 0
@@ -153,11 +156,12 @@ def submitquiz(request):
         elif percentage >= 40:
             grade = 'D'
         else:
-            grade = 'F'
+            grade = 'F',
+
         print(grade,sid,percentage)
-        quizresult = QuizResult(sid=sid,quiz_title="Django", quiz_score=score)
+        quizresult = QuizResult(sid=sid, quiz_title=question.quiz_title, quiz_score=score)
         QuizResult.save(quizresult)
-        return render(request, 'quizresult.html', {'percentage': percentage, 'grade': grade, "sid": sid})
+        return render(request, 'quizresult.html', {'percentage': percentage, 'grade': grade, "sid": sid,"quiz_title":question.quiz_title})
 
     else:
         error_message = "Failed to Save The Quiz"

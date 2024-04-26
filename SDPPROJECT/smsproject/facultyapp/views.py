@@ -4,6 +4,8 @@ from .forms import AddCourseContentForm, AddQuizForm
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import CourseContent, UploadWork, CourseQuiz
 from django.http import HttpResponse
+from studentapp.models import QuizResult
+
 
 def checkfacultylogin(request):
     fid = request.POST["fid"]
@@ -157,7 +159,7 @@ def viewwork(request):
 
 def facultyviewresult(request):
     fid = request.session.get("fid")
-    course_contents = UploadWork.objects.all()
-    context = {'course_contents': course_contents, 'fid': fid}
+    quiz_results = QuizResult.objects.all()
+    context = {'quiz_results': quiz_results, 'fid': fid}
     return render(request, 'facultyviewresult.html', context)
 
